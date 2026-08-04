@@ -413,7 +413,7 @@ static void xml__parse_tag_attributes(const char *xml, size_t *idx, XMLNode **cu
       break;
     }
     size_t attr_len = *idx - attr_start;
-    char attr_key[attr_len + 1];
+    char* attr_key = malloc(attr_len + 1);
     strncpy(attr_key, xml + attr_start, attr_len);
     attr_key[attr_len] = '\0';
     xml__skip_whitespace(xml, idx);
@@ -431,7 +431,7 @@ static void xml__parse_tag_attributes(const char *xml, size_t *idx, XMLNode **cu
     }
     if (xml[*idx] == '\0') break;
     size_t value_len = *idx - value_start;
-    char attr_value[value_len + 1];
+    char* attr_value = malloc(value_len + 1);
     strncpy(attr_value, xml + value_start, value_len);
     attr_value[value_len] = '\0';
     (*idx)++; // Skip closing quote
