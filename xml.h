@@ -436,6 +436,8 @@ static void xml__parse_tag_attributes(const char *xml, size_t *idx, XMLNode **cu
     attr_value[value_len] = '\0';
     (*idx)++; // Skip closing quote
     xml_node_add_attr(*curr_node, attr_key, attr_value);
+    free(attr_key);
+    free(attr_value);
     xml__skip_whitespace(xml, idx);
   }
 }
